@@ -1,15 +1,14 @@
-//Placez ce fichier dans src/components/common/.
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { Link } from 'react-router-dom';
-import menuItems from '../../menu.json';
+import menuItems from '../../menu.json'; // Assurez-vous que le chemin d'accès est correct
+
+const drawerWidth = 240;
 
 const Sidebar = () => {
-  const drawerWidth = 240;
-
   return (
     <Drawer
       sx={{
@@ -25,7 +24,7 @@ const Sidebar = () => {
     >
       <List>
         {menuItems.map((item, index) => (
-          <ListItem button key={index} component={Link} to={item.link}>
+          <ListItem button key={index} component={NavLink} to={item.link} activeClassName="Mui-selected" exact>
             <ListItemText primary={item.title} />
           </ListItem>
         ))}
