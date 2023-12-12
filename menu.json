@@ -1,0 +1,25 @@
+//le placer dans fichier src
+[
+  {
+    "title": "Home",
+    "link": "/"
+  },
+  {
+    "title": "Form",
+    "link": "/form",
+    "subPages": [
+      {
+        "title": "Input",
+        "link": "/form/input"
+      },
+      {
+        "title": "Output",
+        "link": "/form/output"
+      }
+    ]
+  },
+  {
+    "title": "Documentation",
+    "link": "/documentation"
+  }
+]
