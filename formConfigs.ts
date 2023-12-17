@@ -1,12 +1,23 @@
 // formAConfig.ts
-
-interface FormField {
-  type: string;
-  name: string;
-  label: string;
-  options?: { key: string; text: string; value: string }[];
+// Define the structure of a single form field
+export interface FormField {
+  type: string; // The type of the form field (e.g., 'text', 'dropdown', 'date', etc.)
+  name: string; // The name of the field (used as a key)
+  label: string; // The label of the field (displayed on the form)
+  options?: Option[]; // Optional: Used for dropdown fields to define the dropdown options
 }
 
+// Define the structure of a dropdown option
+export interface Option {
+  key: string; // Unique key for each option
+  text: string; // Text to be displayed
+  value: string; // The value of the option
+}
+
+// Define a type for the forms configuration
+export type FormsConfig = { [formName: string]: FormField[] };
+
+// Example configuration for Form A
 export const formAConfig: FormField[] = [
   {
     type: 'text',
@@ -33,4 +44,7 @@ export const formAConfig: FormField[] = [
     name: 'endDate',
     label: 'End Date',
   },
+  // Add more fields as needed
 ];
+
+// You can add more form configurations here, similar to formAConfig
