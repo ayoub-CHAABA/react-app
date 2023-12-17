@@ -1,9 +1,14 @@
 import React from 'react';
 
-const OutputPage = ({ data }) => {
+interface OutputPageProps {
+  data: any;  // Replace 'any' with the specific type of your form data
+}
+
+const OutputPage: React.FC<OutputPageProps> = ({ data }) => {
   return (
     <div>
-      {/* Output logic */}
+      <h2>Form Submission</h2>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
 };
