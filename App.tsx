@@ -1,21 +1,30 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import store from './redux/store';
-import SidebarMenu from './components/SidebarMenu';
-import DynamicForm from './pages/DynamicForm';
-import OutputPage from './pages/OutputPage';
-import './index.css';
+import React, { useState } from 'react';
+import SidebarMenu from './SidebarMenu';
+import DynamicForm from './DynamicForm';
+import OutputPage from './OutputPage';
+import formConfigs from './formConfigs';
 
 function App() {
-  // Application logic...
+  const [currentFormKey, setCurrentFormKey] = useState<string | null>(null);
+  const [formData, setFormData] = useState<any | null>(null);  // Replace 'any' with a specific type
+
+  const handleSelectForm = (formKey: string) => {
+    setCurrentFormKey(formKey);
+    setFormData(null);  // Reset form data on form change
+  };
+
+  const handleSubmit = (values: any) => {
+    setFormData(values);  // Replace 'any' with a specific type
+  };
 
   return (
-    <Provider store={store}>
-      <div className="App">
-        <SidebarMenu />
-        {/* Routing logic or conditional rendering for DynamicForm and OutputPage */}
-      </div>
-    </Provider>
+    <div className="App">
+      <SidebarMenu forms={formConfigs} onSelectForm={handleSelectForm} />
+      {!formData && currentFormKey && (
+        <DynamicForm config={formConfigs[currentFormKey]} onSubmit={handleSubmit} />
+      )}
+      {formData && <OutputPage data={formData} />}
+    </div>
   );
 }
 
