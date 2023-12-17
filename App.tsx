@@ -1,24 +1,21 @@
-//Mettez à jour ce fichier dans src/.
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Sidebar from './components/common/Sidebar';
-import InputForm from './routes/form/InputForm';
-import OutputPage from './routes/form/OutputPage';
-import Home from './routes/home/Home';
-import Documentation from './routes/documentation/Documentation';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import SidebarMenu from './components/SidebarMenu';
+import DynamicForm from './pages/DynamicForm';
+import OutputPage from './pages/OutputPage';
+import './index.css';
 
 function App() {
+  // Application logic...
+
   return (
-    <Router>
-      <Sidebar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/form/input" element={<InputForm />} />
-        <Route path="/form/output" element={<OutputPage />} />
-        <Route path="/documentation" element={<Documentation />} />
-        {/* Ajoutez d'autres routes ici si nécessaire */}
-      </Routes>
-    </Router>
+    <Provider store={store}>
+      <div className="App">
+        <SidebarMenu />
+        {/* Routing logic or conditional rendering for DynamicForm and OutputPage */}
+      </div>
+    </Provider>
   );
 }
 
