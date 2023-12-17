@@ -1,3 +1,5 @@
+//to download : import 'semantic-ui-css/semantic.min.css';
+
 import React from 'react';
 import { Menu, Dropdown } from 'semantic-ui-react';
 
