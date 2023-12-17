@@ -19,13 +19,33 @@
   font-weight: bold;
 }
 
-.form-field input, .form-field select, .form-field textarea {
+.form-field input, 
+.form-field select, 
+.form-field textarea, 
+.form-field .dropzone {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
+/* Specific style for checkboxes */
+.form-field .checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+.form-field .checkbox-label input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+/* Style for error messages */
+.form-field .error {
+  color: #d32f2f;
+  margin-top: 5px;
+}
+
+/* Submit Button Style */
 button.submit-button {
   background-color: #4CAF50;
   color: white;
@@ -34,11 +54,13 @@ button.submit-button {
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  margin-top: 10px;
 }
 
 button.submit-button:hover {
   background-color: #45a049;
 }
+
 /* Output Page Styles */
 .output-container {
   margin: 20px;
@@ -59,6 +81,8 @@ button.submit-button:hover {
   border-radius: 4px;
   overflow-x: auto;
 }
+
+/* Layout Styles */
 .App {
   display: flex;
 }
@@ -71,3 +95,18 @@ button.submit-button:hover {
   flex-grow: 1;
 }
 
+/* Dropzone Style */
+.dropzone {
+  min-height: 150px;
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.dropzone .MuiDropzoneArea-root {
+  flex-direction: column;
+}
