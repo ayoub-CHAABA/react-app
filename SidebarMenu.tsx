@@ -1,4 +1,4 @@
-//Then, import the Semantic UI CSS in your main entry file (e.g., index.js or App.js): import 'semantic-ui-css/semantic.min.css';
+//npm install semantic-ui-react semantic-ui-css Then, import the Semantic UI CSS in your main entry file (e.g., index.js or App.js): import 'semantic-ui-css/semantic.min.css';
 
 import React from 'react';
 import { Menu, Dropdown } from 'semantic-ui-react';
