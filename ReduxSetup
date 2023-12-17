@@ -1,0 +1,44 @@
+Redux Setup (redux/store.ts, redux/actions.ts, redux/reducers.ts, redux/types.ts)
+// redux/store.ts
+import { createStore } from 'redux';
+import rootReducer from './reducers';
+
+const store = createStore(rootReducer);
+
+export default store;
+
+//redux/actions.ts
+export const SET_CURRENT_FORM = 'SET_CURRENT_FORM';
+
+export const setCurrentForm = formKey => ({
+  type: SET_CURRENT_FORM,
+  payload: formKey,
+});
+
+//redux/reducers.ts
+import { SET_CURRENT_FORM } from './actions';
+
+const initialState = {
+  currentForm: null,
+};
+
+const rootReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SET_CURRENT_FORM:
+      return { ...state, currentForm: action.payload };
+    default:
+      return state;
+  }
+};
+
+export default rootReducer;
+
+//redux/types.ts
+export interface AppState {
+  currentForm: string | null;
+}
+
+export interface SetCurrentFormAction {
+  type: 'SET_CURRENT_FORM';
+  payload: string;
+}
