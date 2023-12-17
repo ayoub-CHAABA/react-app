@@ -1,10 +1,10 @@
 //npm install semantic-ui-react semantic-ui-css Then, import the Semantic UI CSS in your main entry file (e.g., index.js or App.js): import 'semantic-ui-css/semantic.min.css';
 
 import React from 'react';
-import { Menu, Dropdown, Icon } from 'semantic-ui-react';
+import { Menu, Dropdown } from 'semantic-ui-react';
 
 interface SidebarMenuProps {
-  forms: { [key: string]: any }; // Replace `any` with the type of your forms configuration
+  forms: FormsConfig;
   onSelectForm: (formKey: string) => void;
 }
 
@@ -18,7 +18,6 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ forms, onSelectForm }) => {
               key={formKey}
               onClick={() => onSelectForm(formKey)}
             >
-              <Icon name="file alternate" />
               {formKey}
             </Dropdown.Item>
           ))}
