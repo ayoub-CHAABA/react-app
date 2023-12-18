@@ -1,0 +1,101 @@
+Pour ajouter une image en arrière-plan floue à votre page d'accueil `index.md` dans MkDocs, vous pouvez utiliser du CSS personnalisé. Voici les étapes générales et le code :
+
+1. Placez l'image que vous voulez utiliser dans un dossier d'assets, par exemple `docs/assets/`.
+
+2. Créez un fichier CSS personnalisé dans le même dossier d'assets ou dans un dossier dédié pour le CSS, par exemple `docs/assets/css/custom.css`.
+
+3. Ajoutez le code CSS suivant dans votre fichier `custom.css`, en ajustant le chemin de l'image en fonction de l'endroit où vous l'avez stockée :
+
+```css
+/* Ajoute le fond en plein écran avec flou */
+body {
+  background: url('../assets/IMG_8256.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+/* Contenu de la page avec fond transparent pour voir l'image floue en dessous */
+.page-content {
+  background: rgba(255, 255, 255, 0.7); /* Fond blanc semi-transparent */
+  padding: 20px;
+}
+
+/* Assurez-vous que le texte n'est pas flou */
+.page-content * {
+  -webkit-filter: blur(0);
+  -moz-filter: blur(0);
+  -o-filter: blur(0);
+  -ms-filter: blur(0);
+  filter: blur(0);
+}
+```
+
+4. Ensuite, ajoutez un lien vers votre fichier CSS personnalisé dans le fichier de configuration `mkdocs.yml` :
+
+```yaml
+extra_css:
+  - 'assets/css/custom.css'
+```
+
+5. Ajustez la taille du fond (`background-size`) et le niveau de flou (`filter: blur`) selon vos besoins.
+
+Veuillez noter que l'effet de flou peut affecter la performance, surtout sur de grands écrans. Testez cette configuration pour vous assurer qu'elle répond à vos attentes en termes de design et de performance. Aussi, si vous voulez que l'image s'adapte bien aux écrans de 14 pouces et aux grands écrans comme 1920px de largeur, vous devriez tester et peut-être utiliser des media queries CSS pour ajuster les propriétés en conséquence.
+Pour utiliser les media queries CSS afin d'adapter le fond en fonction de la taille de l'écran, vous pouvez modifier le fichier CSS personnalisé comme suit. Cela prendra en compte les écrans de 14 pouces (généralement en dessous de 1600 pixels de largeur) et les grands écrans de 1920 pixels de largeur.
+
+Dans votre `custom.css`, vous pouvez ajouter :
+
+```css
+/* Style de base pour les écrans plus petits */
+body {
+  background: url('../assets/IMG_8256.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+/* Contenu de la page avec fond transparent */
+.page-content {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+}
+
+/* Enlève le flou du texte */
+.page-content * {
+  -webkit-filter: blur(0);
+  -moz-filter: blur(0);
+  -o-filter: blur(0);
+  -ms-filter: blur(0);
+  filter: blur(0);
+}
+
+/* Media query pour écrans de 14 pouces (largeur inférieure à 1600px) */
+@media only screen and (max-width: 1600px) {
+  body {
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
+  }
+}
+
+/* Media query pour grands écrans (1920px) */
+@media only screen and (min-width: 1920px) {
+  body {
+    -webkit-filter: blur(7px);
+    -moz-filter: blur(7px);
+    -o-filter: blur(7px);
+    -ms-filter: blur(7px);
+    filter: blur(7px);
+  }
+}
+```
+
+Ce code CSS applique un effet de flou plus léger pour les écrans plus petits et un effet de flou plus prononcé pour les grands écrans. Assurez-vous de tester ces styles sur différents appareils pour vérifier que le rendu est conforme à vos attentes. Vous pouvez ajuster les valeurs de `max-width` et `min-width` ainsi que le degré de flou selon les spécifications exactes de votre design et les besoins de votre audience.
