@@ -1,3 +1,44 @@
+#content-container {
+  display: flex;
+  flex-direction: column; /* Organise les enfants en colonne */
+  align-items: center; /* Centre les enfants horizontalement */
+  justify-content: center; /* Centre les enfants verticalement si nécessaire */
+  height: 100vh; /* Donne une hauteur pour permettre le centrage vertical */
+}
+
+#content-container h2 {
+  text-align: center; /* Centre le texte du titre */
+}
+
+#content-container ul {
+  padding: 0;
+  margin: 0;
+  list-style: none; /* Enlève les puces */
+  width: 100%; /* La liste prend toute la largeur du conteneur */
+  max-width: 600px; /* Ajustez ceci pour la largeur maximale désirée */
+  text-align: center; /* Centre le texte des éléments de la liste */
+}
+
+#content-container ul li {
+  display: block; /* Les éléments de la liste sont affichés comme des blocs */
+  margin: 10px 0; /* Ajoute de l'espace au-dessus et en dessous de chaque élément de la liste */
+}
+
+#content-container {
+  text-align: center; /* Centre le texte et les blocs à l'intérieur */
+}
+
+#content-container ul {
+  list-style: none; /* Enlève les puces de la liste */
+  padding: 0; /* Enlève le padding par défaut */
+  margin: 0 auto; /* Centrage de la liste */
+}
+
+#content-container h2, 
+#content-container ul li {
+  margin: 10px 0; /* Espacement vertical entre les éléments */
+}
+
 Pour ajouter une image en arrière-plan floue à votre page d'accueil `index.md` dans MkDocs, vous pouvez utiliser du CSS personnalisé. Voici les étapes générales et le code :
 
 1. Placez l'image que vous voulez utiliser dans un dossier d'assets, par exemple `docs/assets/`.
