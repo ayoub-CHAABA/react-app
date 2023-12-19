@@ -1,111 +1,128 @@
-/* Only apply the sidebar styling when the 'not-index' class is present on the body */
-body.not-index .sidebar {
+/* Base styles for menu and content-container, applied for all pages */
+.menu {
+  /* Your base styles for menu */
+}
+
+.content-container {
+  /* Your base styles for content container */
+}
+
+/* Styles that only apply to non-index pages */
+.not-index .menu {
+  width: 250px;
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 250px;
-  background: #f0f0f0;
-  z-index: 1000;
   overflow-y: auto;
+  /* Other styles for the menu */
 }
 
-/* Style your buttons as previously defined */
-
-/* Only push the main content over to make room for the sidebar on non-index pages */
-body.not-index .main-content {
-  margin-left: 250px;
+.not-index .content-container {
+  margin-left: 250px; /* Push content to the right on non-index pages */
 }
 
-/* Adjust the sidebar and main content for smaller screens */
+/* Responsive design for smaller screens */
 @media screen and (max-width: 768px) {
-  body.not-index .sidebar {
-    width: 100px;
+  .not-index .menu {
+    width: 100px; /* Smaller width for the menu */
   }
-  body.not-index .main-content {
-    margin-left: 100px;
+  .not-index .content-container {
+    margin-left: 100px; /* Adjust margin for smaller menu */
   }
 }
+**********
+<!-- Sidebar menu structure -->
 <div class="sidebar">
-  <div class="button-container">
-    <!-- Your buttons -->
+  <!-- Menu items -->
+  <div class="menu">
+    <button id="new-joiner-btn" class="menu-item">I'm a New Joiner 😊</button>
+    <button id="is-member-btn" class="menu-item">I'm an IS Member 😊</button>
+    <!-- Add other buttons or links for your menu here -->
   </div>
 </div>
 
-<div class="main-content">
-  <!-- Your main content -->
+<!-- This div is for the content that will be dynamically loaded based on the button clicks -->
+<div id="content-container" class="main-content">
+  <!-- Content will be injected here by your JavaScript -->
+</div>
+*********
+/* Sidebar styles */
+.sidebar {
+  width: 250px; /* Width of the sidebar */
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #f0f0f0; /* Background color of the sidebar */
+  z-index: 1000; /* Ensure it's on top of other content */
+  overflow-y: auto; /* Scrollable if content is longer than the viewport */
+}
+
+/* Menu item styles */
+.menu-item {
+  display: block; /* Make the buttons fill the container */
+  width: 100%; /* Full width within the sidebar */
+  padding: 10px;
+  border: none;
+  background-color: #2980b9;
+  color: white;
+  text-align: left;
+}
+
+.menu-item:hover, .menu-item:focus {
+  background-color: #3498db;
+}
+
+/* Main content styles */
+.main-content {
+  padding-left: 250px; /* Offset for the sidebar width */
+}
+
+
+
+
+
+
+
+
+**********
+/* Container for the whole page */
+.page-container {
+  display: flex;
+}
+
+/* Container for the menu */
+.menu {
+  flex: 0 0 250px; /* Adjust the width as needed */
+  background-color: #f0f0f0; /* Example color */
+  height: 100vh; /* Full height */
+  overflow-y: auto; /* Scroll if content is longer than the screen */
+}
+
+/* Container for the main content */
+.main-content {
+  flex-grow: 1; /* Takes up the remaining space */
+  padding-left: 250px; /* Same as the width of the menu */
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+  .menu {
+    flex-basis: 100px; /* Smaller width for the menu */
+  }
+  .main-content {
+    padding-left: 100px; /* Same as the new width of the menu */
+  }
+}
+<!-- This is buttons.html -->
+<div class="menu">
+  <button id="new-joiner-btn">I'm a New Joiner 😊</button>
+  <button id="is-member-btn">I'm an IS Member 😊</button>
+  <!-- More buttons or links for your menu -->
 </div>
 
 
-
-
-
-
-
-// This function is called when the page loads to display content based on the selected menu
-function displayContent(userType) {
-  let content = '';
-  if (userType === 'new_joiner') {
-    content = `
-      <h2>New Joiner Guide</h2>
-      <ul>
-        <li><a href="/new_joiners/team_organisation">Team Organisation</a></li>
-        <li><a href="/new_joiners/access_rights">Access Rights</a></li>
-        <li><a href="/new_joiners/applications">Applications</a></li>
-        <!-- More links for new joiner -->
-      </ul>
-    `;
-  } else if (userType === 'is_member') {
-    content = `
-      <h2>IS Member Resources</h2>
-      <ul>
-        <li><a href="/is_members/planner_doc">IS Planner</a></li>
-        <li><a href="/is_members/guidelines">Guidelines</a></li>
-        <!-- More links for IS member -->
-      </ul>
-    `;
-  }
-  
-  // Inject the content into the 'content-container' element
-  const container = document.getElementById('content-container');
-  if (container) {
-    container.innerHTML = content;
-  }
-}
-
-// Load the buttons and set up event listeners
-function loadButtons() {
-  fetch('html/buttons.html')
-    .then(response => response.text())
-    .then(html => {
-      document.querySelector('#button-placeholder').innerHTML = html;
-      
-      // Set up the event listeners for each button
-      document.getElementById('new-joiner-btn').addEventListener('click', function () {
-        localStorage.setItem('selectedSection', 'new_joiner');
-        displayContent('new_joiner');
-      });
-
-      document.getElementById('is-member-btn').addEventListener('click', function () {
-        localStorage.setItem('selectedSection', 'is_member');
-        displayContent('is_member');
-      });
-    });
-}
-
-// This function checks for the selected section on every page load
-function checkForSelectedSection() {
-  const selectedSection = localStorage.getItem('selectedSection');
-  if (selectedSection) {
-    displayContent(selectedSection);
-  }
-}
-
-// When the DOM is fully loaded, load the buttons and check for a selected section
-document.addEventListener('DOMContentLoaded', function () {
-  loadButtons();
-  checkForSelectedSection();
-});
 #content-container {
   display: flex;
   flex-direction: column; /* Organise les enfants en colonne */
