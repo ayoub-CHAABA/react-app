@@ -1,46 +1,29 @@
-/* Place the button container inside a sidebar */
-.sidebar {
+/* Only apply the sidebar styling when the 'not-index' class is present on the body */
+body.not-index .sidebar {
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 250px; /* Set the width of the sidebar */
-  background: #f0f0f0; /* Set the background color of the sidebar */
+  width: 250px;
+  background: #f0f0f0;
   z-index: 1000;
-  overflow-y: auto; /* Enable scrolling if the content is longer than the screen */
+  overflow-y: auto;
 }
 
-/* Style your buttons */
-.button-container button {
-  background-color: #2980b9;
-  color: white;
-  border: none;
-  border-radius: 2px;
-  padding: 10px 20px;
-  margin: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+/* Style your buttons as previously defined */
+
+/* Only push the main content over to make room for the sidebar on non-index pages */
+body.not-index .main-content {
+  margin-left: 250px;
 }
 
-.button-container button:hover,
-.button-container button:focus {
-  background-color: #3498db;
-}
-
-/* Main content styling */
-.main-content {
-  margin-left: 250px; /* Set the same value as the width of the sidebar */
-  /* Other styles for your main content */
-}
-
-/* Responsive styling */
+/* Adjust the sidebar and main content for smaller screens */
 @media screen and (max-width: 768px) {
-  .sidebar {
-    width: 100px; /* Smaller sidebar for small screens */
+  body.not-index .sidebar {
+    width: 100px;
   }
-
-  .main-content {
-    margin-left: 100px; /* Adjust the margin to match the smaller sidebar */
+  body.not-index .main-content {
+    margin-left: 100px;
   }
 }
 <div class="sidebar">
