@@ -1,3 +1,40 @@
+When deploying MkDocs on GitHub Pages, the issue with paths like /folder/index.html not working usually arises due to the way GitHub Pages handles URLs. Here are some steps to ensure your paths work correctly:
+
+	1.	Base URL Configuration:
+In your mkdocs.yml file, make sure you have set the site_url property to your GitHub Pages URL. For example, if your GitHub username is username and your repository is repo, your site_url should be https://username.github.io/repo/.
+	2.	Use Relative URLs:
+Avoid absolute paths like /folder/index.html. Instead, use relative paths. For instance, if you’re linking to a page in the same directory, use index.html or ./index.html. If you’re linking to a page in a subdirectory, use subdirectory/page.html.
+	3.	Custom Domain:
+If you are using a custom domain with GitHub Pages, ensure that it is correctly configured in your repository settings and in your mkdocs.yml.
+	4.	GitHub Pages Source:
+In your repository settings on GitHub, ensure that GitHub Pages is set to serve the correct branch and directory (/docs folder or the site generated in the gh-pages branch, depending on your setup).
+	5.	Building the Site:
+Make sure you build your MkDocs site before deploying. Use mkdocs build to generate the static site. If you are using GitHub Actions to automate deployment, ensure it’s correctly set up to build and deploy your MkDocs site.
+	6.	Testing Locally:
+Before pushing to GitHub, test your site locally using mkdocs serve. This can help catch issues with broken links or incorrect paths.
+	7.	Inspecting HTML:
+After deployment, inspect the HTML of your GitHub Pages site to verify that the links are being generated as expected. Sometimes, the issue could be with how MkDocs generates links.
+	8.	GitHub Workflow:
+If you’re using a GitHub workflow to deploy your MkDocs site, make sure the workflow is correctly set up to deploy to the gh-pages branch and that it’s building the site correctly.
+
+By following these guidelines, you should be able to fix the path issues when deploying MkDocs to GitHub Pages. Remember to commit and push all changes to your repository to see the effects on your GitHub Pages site.
+
+site_name: My Documentation
+site_url: https://yourusername.github.io/yourrepository/
+
+# Configuration for theme, plugins, etc.
+theme:
+    name: mkdocs
+    # Additional theme settings...
+
+# Navigation configuration
+nav:
+    - Home: index.md
+    - About: about.md
+    - Contact: contact.md
+
+# Additional settings...
+
 /* Base styles for menu and content-container, applied for all pages */
 .menu {
   /* Your base styles for menu */
