@@ -1,11 +1,16 @@
-
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function() {
   var contentInfo = document.querySelector('footer div[role="contentinfo"]');
   if (contentInfo) {
-    // Remove all child elements but keep text nodes
+    // Remove the 'Built with MkDocs' text and related links
     Array.from(contentInfo.childNodes).forEach(function(node) {
-      if (node.nodeType === Node.ELEMENT_NODE) {
-        node.remove();
+      if (node.nodeType === Node.TEXT_NODE && /Built with/.test(node.textContent)) {
+        contentInfo.removeChild(node);
+      }
+      if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'A' && 
+        (node.href === 'https://www.mkdocs.org/' || 
+         node.href === 'https://github.com/readthedocs/sphinx_rtd_theme' || 
+         node.href === 'https://readthedocs.org')) {
+        contentInfo.removeChild(node);
       }
     });
   }
