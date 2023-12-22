@@ -1,3 +1,15 @@
+
+document.addEventListener("DOMContentLoaded", function(){
+  var contentInfo = document.querySelector('footer div[role="contentinfo"]');
+  if (contentInfo) {
+    // Remove all child elements but keep text nodes
+    Array.from(contentInfo.childNodes).forEach(function(node) {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        node.remove();
+      }
+    });
+  }
+});
 When deploying MkDocs on GitHub Pages, the issue with paths like /folder/index.html not working usually arises due to the way GitHub Pages handles URLs. Here are some steps to ensure your paths work correctly:
 
 	1.	Base URL Configuration:
