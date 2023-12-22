@@ -15,6 +15,18 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
+footer div[role="contentinfo"] a[href="https://www.mkdocs.org/"],
+footer div[role="contentinfo"] a[href="https://github.com/readthedocs/sphinx_rtd_theme"],
+footer div[role="contentinfo"] a[href="https://readthedocs.org"] {
+    display: none;
+}
+
+/* Optional: Hide the text 'Built with' and 'using a' if they are not wrapped inside <a> tags */
+footer div[role="contentinfo"]:contains('Built with'),
+footer div[role="contentinfo"]:contains('using a') {
+    display: none;
+}
+
 When deploying MkDocs on GitHub Pages, the issue with paths like /folder/index.html not working usually arises due to the way GitHub Pages handles URLs. Here are some steps to ensure your paths work correctly:
 
 	1.	Base URL Configuration:
