@@ -1,21 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Select all breadcrumb links
-  var breadcrumbLinks = document.querySelectorAll('ul.wy-breadcrumbs li a');
+  // Select all breadcrumb items except the home icon
+  var breadcrumbItems = document.querySelectorAll('ul.wy-breadcrumbs li:not(:first-child) a');
 
-  // Attach the event listener to each link
-  breadcrumbLinks.forEach(function(link) {
-    link.addEventListener('click', function(event) {
-      // Check if the clicked link is the 'Home' icon
-      if (!this.classList.contains('icon-home')) {
-        // It's not the 'Home' icon, so prevent the default link behavior
-        event.preventDefault();
-        // Scroll to the top of the page
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      }
-      // If it is the 'Home' icon, the default action will proceed, navigating to the linked page
+  // Add click event listener to each breadcrumb item
+  breadcrumbItems.forEach(function(item) {
+    item.addEventListener('click', function(event) {
+      // Prevent the default action
+      event.preventDefault();
+      // Scroll to the top of the page smoothly
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
   });
 });
